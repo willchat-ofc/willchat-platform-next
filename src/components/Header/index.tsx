@@ -2,14 +2,22 @@ export const Header = () => {
   return (
     <nav className="flex justify-between h-16 align-middle">
       <div className="flex items-center h-full">
-        <span className="mx-10">WILLCHAT</span>
-        <div className="flex gap-4 items-center justify-center">
-          <li className="h-max">Home</li>
-          <li>Docs</li>
-          <li>Support</li>
+        <span className="mx-10 text-xl font-semibold">
+          <button>WILLCHAT</button>
+        </span>
+        <div className="flex h-full gap-4 items-center [&_li]:h-full [&_li]:flex hover:[&_li_button]:text-[#ffffffab] justify-center">
+          <li className="h-full flex">
+            <button>Home</button>
+          </li>
+          <li className="h-full flex">
+            <button>Docs</button>
+          </li>
+          <li className="h-full flex">
+            <button>Support</button>
+          </li>
         </div>
       </div>
-      <div className="flex mx-10 gap-4">
+      <div className="flex mx-10 gap-4 hover:[&_button]:text-[#ffffffab]">
         <button>Sign In</button>
         <button>Try Free</button>
       </div>
