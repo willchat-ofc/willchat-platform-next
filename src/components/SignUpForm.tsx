@@ -89,6 +89,12 @@ export const SignUpForm = () => {
           <Button type="submit" className="w-full">
             Submit
           </Button>
+          <p className="w-full flex items-center justify-center gap-1">
+            Don&apos;t have an account?{" "}
+            <button className="text-slate-400 hover:text-slate-700">
+              Create Now
+            </button>
+          </p>
         </form>
       </Form>
     </div>
