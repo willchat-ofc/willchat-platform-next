@@ -13,6 +13,7 @@ import {
 import { Input } from "./ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { redirect, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -33,6 +34,8 @@ export const SignUpForm = () => {
     console.log(values);
   }
 
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,7 +49,7 @@ export const SignUpForm = () => {
     <div className="w-[500px] rounded-lg bg-slate-900 p-14">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <h1 className="font-bold text-2xl">Sign In</h1>
+          <h1 className="font-bold text-2xl">Sign Up</h1>
           <FormField
             control={form.control}
             name="name"
@@ -90,9 +93,13 @@ export const SignUpForm = () => {
             Submit
           </Button>
           <p className="w-full flex items-center justify-center gap-1">
-            Don&apos;t have an account?{" "}
-            <button className="text-slate-400 hover:text-slate-700">
-              Create Now
+            Already have an account?{" "}
+            <button
+              type="button"
+              className="text-slate-400 hover:text-slate-700"
+              onClick={() => router.push("/sign-in")}
+            >
+              Sign In
             </button>
           </p>
         </form>

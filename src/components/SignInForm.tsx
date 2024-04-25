@@ -13,6 +13,7 @@ import {
 import { Input } from "./ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { redirect, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -37,6 +38,8 @@ export const SignInForm = () => {
       password: "",
     },
   });
+
+  const router = useRouter();
 
   return (
     <div className="w-[500px] rounded-lg bg-slate-900 p-14">
@@ -73,9 +76,13 @@ export const SignInForm = () => {
             Submit
           </Button>
           <p className="w-full flex items-center justify-center gap-1">
-            Already have an account?{" "}
-            <button className="text-slate-400 hover:text-slate-700">
-              Sign In
+            Don&apos;t have an account?{" "}
+            <button
+              type="button"
+              className="text-slate-400 hover:text-slate-700"
+              onClick={() => router.push("/sign-up")}
+            >
+              Create Now
             </button>
           </p>
         </form>
