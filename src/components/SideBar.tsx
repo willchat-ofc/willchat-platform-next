@@ -16,9 +16,7 @@ export const SideBar = () => {
         <span className="text-[15px] ml-4 text-gray-200 font-bold">Home</span>
       </div>
       <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-        <span className="text-[15px] ml-4 text-gray-200 font-bold">
-          Bookmark
-        </span>
+        <span className="text-[15px] ml-4 text-gray-200 font-bold">Chats</span>
       </div>
       <div className="my-4 bg-gray-600 h-[1px]"></div>
       <div
@@ -27,14 +25,14 @@ export const SideBar = () => {
       >
         <div className="flex justify-between w-full items-center">
           <span className="text-[15px] ml-4 text-gray-200 font-bold">
-            Chatbox
+            Tickets
           </span>
           <span className="text-sm rotate-180" id="arrow">
             <i className="bi bi-chevron-down"></i>
           </span>
         </div>
       </div>
-      <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+      <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-[#f33939] text-white">
         <i className="bi bi-box-arrow-in-right"></i>
         <span className="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
       </div>
