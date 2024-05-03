@@ -1,4 +1,9 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 export const Header = () => {
+  const router = useRouter();
+
   return (
     <nav className="flex justify-between h-16 align-middle font-bossa-regular border-b border-[#ffffff23]">
       <div className="flex items-center h-full">
@@ -18,8 +23,8 @@ export const Header = () => {
         </div>
       </div>
       <div className="flex mx-10 gap-6 hover:[&_button]:text-blue-600">
-        <button>Sign In</button>
-        <button>Try Free</button>
+        <button onClick={() => router.push("/sign-in")}>Sign In</button>
+        <button onClick={() => router.push("/sign-up")}>Try Free</button>
       </div>
     </nav>
   );
