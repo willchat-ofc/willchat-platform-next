@@ -8,12 +8,12 @@ export const SideBar = () => {
             Home
           </button>
         </li>
-        <li className="group hover:bg-[#7777774d] cursor-pointe">
+        <li className="group hover:bg-[#7777774d] cursor-pointer">
           <button className="group-hover:border-l group-hover:border-[#bbbbbb]">
             About
           </button>
         </li>
-        <li className="group hover:bg-[#7777774d] cursor-pointe">
+        <li className="group hover:bg-[#7777774d] cursor-pointer">
           <button className="group-hover:border-l group-hover:border-[#bbbbbb]">
             Contact
           </button>
