@@ -1,6 +1,6 @@
 export const Header = () => {
   return (
-    <nav className="flex justify-between h-16 align-middle font-bossa-regular">
+    <nav className="flex justify-between h-16 align-middle font-bossa-regular border-b border-[#ffffff23]">
       <div className="flex items-center h-full">
         <span className="mx-10 text-xl font-semibold">
           <button>WILLCHAT</button>
