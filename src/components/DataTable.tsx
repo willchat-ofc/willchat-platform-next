@@ -39,9 +39,9 @@ import {
 const data: Chat[] = [
   {
     id: "m5gr84i9",
-    key: "3161321123231123",
+    key: "3161321123231121212211221212112122112123",
     createdAt: "15/10/2004",
-    updatedAt: "ken99@yahoo.com",
+    updatedAt: "willian.cacoelho@yahoo.com",
   },
 ];
 
@@ -99,9 +99,19 @@ export const columns: ColumnDef<Chat>[] = [
   },
   {
     accessorKey: "updatedAt",
-    header: () => <div>Updated At</div>,
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Updated At
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => {
-      return <div className="font-medium">{row.getValue("updatedAt")}</div>;
+      return (
+        <div className="font-medium ml-4">{row.getValue("updatedAt")}</div>
+      );
     },
   },
   {
@@ -169,10 +179,10 @@ export function DataTableDemo() {
     <div className="w-full mx-2">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter  emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter  names..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
