@@ -41,7 +41,7 @@ const data: Chat[] = [
     id: "m5gr84i9",
     key: "3161321123231123",
     createdAt: "15/10/2004",
-    email: "ken99@yahoo.com",
+    updatedAt: "ken99@yahoo.com",
   },
 ];
 
@@ -49,7 +49,7 @@ export type Chat = {
   id: string;
   key: string;
   createdAt: string;
-  email: string;
+  updatedAt: string;
 };
 
 export const columns: ColumnDef<Chat>[] = [
@@ -101,11 +101,7 @@ export const columns: ColumnDef<Chat>[] = [
     accessorKey: "updatedAt",
     header: () => <div>Updated At</div>,
     cell: ({ row }) => {
-      return (
-        <div className="text-right font-medium">
-          {row.getValue("updatedAt")}
-        </div>
-      );
+      return <div className="font-medium">{row.getValue("updatedAt")}</div>;
     },
   },
   {
