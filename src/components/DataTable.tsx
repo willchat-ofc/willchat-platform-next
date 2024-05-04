@@ -36,47 +36,23 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const data: Payment[] = [
+const data: Chat[] = [
   {
     id: "m5gr84i9",
-    amount: 316,
-    status: "success",
+    key: "3161321123231123",
+    createdAt: "15/10/2004",
     email: "ken99@yahoo.com",
-  },
-  {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
-  },
-  {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
   },
 ];
 
-export type Payment = {
+export type Chat = {
   id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
+  key: string;
+  createdAt: string;
   email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Chat>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -100,47 +76,44 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
+    accessorKey: "key",
+    header: "Key",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("key")}</div>,
   },
   {
-    accessorKey: "email",
+    accessorKey: "createdAt",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Created At
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase ml-4">{row.getValue("createdAt")}</div>
+    ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "updatedAt",
+    header: () => <div>Updated At</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      return (
+        <div className="text-right font-medium">
+          {row.getValue("updatedAt")}
+        </div>
+      );
     },
   },
   {
     id: "actions",
+    header: () => <div>Actions</div>,
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const Chat = row.original;
 
       return (
         <DropdownMenu>
@@ -153,13 +126,14 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(Chat.key)}
             >
-              Copy payment ID
+              Copy Chat Key
             </DropdownMenuItem>
+            <DropdownMenuItem>See Metrics</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Edit chat</DropdownMenuItem>
+            <DropdownMenuItem>Delete chat</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
