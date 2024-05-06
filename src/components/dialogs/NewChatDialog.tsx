@@ -31,11 +31,7 @@ export function NewChatDialog() {
             <Label htmlFor="name" className="text-right">
               Name
             </Label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              className="col-span-3"
-            />
+            <Input id="name" placeholder="My new chat" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
