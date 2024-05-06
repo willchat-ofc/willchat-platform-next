@@ -35,8 +35,65 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { NewChatDialog } from "./dialogs/NewChatDialog";
 
 const data: Chat[] = [
+  {
+    id: "m5gr84i1",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i2",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i3",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i4",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i5",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i6",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i7",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
+  {
+    id: "m5gr84i8",
+    name: "teste123",
+    key: "3161321123231121212211221212112122112123",
+    createdAt: "15/10/2004",
+    updatedAt: "15/10/2004",
+  },
   {
     id: "m5gr84i9",
     name: "teste123",
@@ -213,9 +270,7 @@ export function DataTableDemo() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <Button variant="default" className="w-32">
-          New Chat
-        </Button>
+        <NewChatDialog />
       </div>
       <div className="rounded-md border min-h-[700px]">
         <Table>
