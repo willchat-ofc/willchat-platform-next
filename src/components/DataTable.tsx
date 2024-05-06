@@ -39,14 +39,16 @@ import {
 const data: Chat[] = [
   {
     id: "m5gr84i9",
+    name: "teste123",
     key: "3161321123231121212211221212112122112123",
     createdAt: "15/10/2004",
-    updatedAt: "willian.cacoelho@yahoo.com",
+    updatedAt: "15/10/2004",
   },
 ];
 
 export type Chat = {
   id: string;
+  name: string;
   key: string;
   createdAt: string;
   updatedAt: string;
@@ -79,6 +81,11 @@ export const columns: ColumnDef<Chat>[] = [
     accessorKey: "key",
     header: "Key",
     cell: ({ row }) => <div className="capitalize">{row.getValue("key")}</div>,
+  },
+  {
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
     accessorKey: "createdAt",
