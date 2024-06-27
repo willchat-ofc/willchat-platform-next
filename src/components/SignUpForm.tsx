@@ -25,6 +25,8 @@ const formSchema = z.object({
 
 export const SignUpForm = () => {
   const [requestError, setRequestError] = useState<string | null>(null);
+  const router = useRouter();
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await fetch("/api/sign-up", {
       method: "POST",
@@ -34,9 +36,12 @@ export const SignUpForm = () => {
     if (response.status >= 400) {
       setRequestError((await response.json()).error)
     }
-  }
 
-  const router = useRouter();
+    if (response.status >= 200 && response.status <= 300) {
+      router.push("/sign-in",)
+      return
+    }
+  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -73,7 +78,7 @@ export const SignUpForm = () => {
                 <FormControl>
                   <Input placeholder="Type your password" {...field} />
                 </FormControl>
-                <FormMessage color="#FF80AB" />
+                <FormMessage />
               </FormItem>
             )}
           />
