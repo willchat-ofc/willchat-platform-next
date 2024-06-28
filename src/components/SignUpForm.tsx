@@ -18,7 +18,7 @@ import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().email("Must be a valid email address"),
-  password: z.string().min(6, {
+  password: z.string().min(8, {
     message: "Password must be at least 6 characters.",
   }),
 });
