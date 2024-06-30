@@ -30,18 +30,18 @@ export const SignUpForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await fetch("/api/sign-up", {
       method: "POST",
-      body: JSON.stringify({email: values.email, password: values.password})
-    })
+      body: JSON.stringify({ email: values.email, password: values.password }),
+    });
 
     if (response.status >= 400) {
-      setRequestError((await response.json()).error)
+      setRequestError((await response.json()).error);
     }
 
     if (response.status >= 200 && response.status <= 300) {
-      router.push("/sign-in",)
-      return
+      router.push("/");
+      return;
     }
-  }
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -65,7 +65,7 @@ export const SignUpForm = () => {
                 <FormControl>
                   <Input placeholder="Type your email" {...field} />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -85,7 +85,9 @@ export const SignUpForm = () => {
           <Button type="submit" className="w-full">
             Submit
           </Button>
-          {requestError && <p className="text-center text-[#FF80AB]">{requestError}</p>}
+          {requestError && (
+            <p className="text-center text-[#FF80AB]">{requestError}</p>
+          )}
           <p className="w-full flex items-center justify-center gap-1">
             Already have an account?{" "}
             <button
