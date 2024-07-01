@@ -23,7 +23,7 @@ export const fetchWithAuth = async (
   if (refreshTokenRequestResponse.status >= 400) {
     cookies().delete("refreshToken");
     cookies().delete("accessToken");
-    redirect("/sign-in");
+    redirect("/auth/sign-in");
   }
 
   cookies().set(
