@@ -93,7 +93,7 @@ export const SignUpForm = () => {
             <button
               type="button"
               className="text-slate-400 hover:text-slate-700"
-              onClick={() => router.push("/sign-in")}
+              onClick={() => router.push("/auth/sign-in")}
             >
               Sign In
             </button>
