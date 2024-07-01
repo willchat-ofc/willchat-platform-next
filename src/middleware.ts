@@ -3,8 +3,13 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get("refreshToken")?.value;
 
-  if (!refreshToken && !request.nextUrl.pathname.startsWith("/auth")) {
+  const isInAuthRouter = request.nextUrl.pathname.startsWith("/auth");
+  if (!refreshToken && !isInAuthRouter) {
     return Response.redirect(new URL("/auth/sign-in", request.url));
+  }
+
+  if (refreshToken && isInAuthRouter) {
+    return Response.redirect(new URL("/", request.url));
   }
 }
 
