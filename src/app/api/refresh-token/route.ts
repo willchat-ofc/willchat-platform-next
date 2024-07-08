@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const refreshToken = cookies().get("refreshToken")?.value;
@@ -25,7 +27,6 @@ export async function GET(request: NextRequest) {
       httpOnly: true,
       sameSite: "strict",
       path: "/",
-      secure: process.env.NODE_ENV === "production",
     };
 
     if (response.status >= 200 && response.status <= 300) {
