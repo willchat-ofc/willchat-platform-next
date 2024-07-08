@@ -4,6 +4,7 @@ import { Chat, DataTableDemo } from "@/components/DataTable";
 import { Header } from "@/components/Header";
 import { SideBar } from "@/components/SideBar";
 import { useEffect, useState } from "react";
+import { useAppContext } from "./context";
 
 export default function Home() {
   const [data, setData] = useState<Chat[]>([]);

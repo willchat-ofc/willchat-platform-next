@@ -36,6 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { NewChatDialog } from "./dialogs/NewChatDialog";
+import { useAppContext } from "@/app/context";
 
 export type Chat = {
   id: string;
@@ -94,31 +95,47 @@ export const columns: ColumnDef<Chat>[] = [
     cell: ({ row }) => {
       const Chat = row.original;
 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(Chat.id)}
-            >
-              Copy Chat Key
-            </DropdownMenuItem>
-            <DropdownMenuItem>See Metrics</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit chat</DropdownMenuItem>
-            <DropdownMenuItem>Delete chat</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <DropDownMenuComponent chat={Chat} />;
     },
   },
 ];
+
+interface DropDownMenuProps {
+  chat: Chat;
+}
+
+const DropDownMenuComponent = ({ chat }: DropDownMenuProps) => {
+  const { test } = useAppContext();
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="h-8 w-8 p-0">
+          <span className="sr-only">Open menu</span>
+          <MoreHorizontal className="h-4 w-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuItem
+          onClick={() => navigator.clipboard.writeText(chat.id)}
+        >
+          Copy Chat Key
+        </DropdownMenuItem>
+        <DropdownMenuItem>See Metrics</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Edit chat</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            console.log(test);
+          }}
+        >
+          Delete chat
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 interface Props {
   data: Chat[];
