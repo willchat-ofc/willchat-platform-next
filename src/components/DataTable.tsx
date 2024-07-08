@@ -37,78 +37,9 @@ import {
 } from "@/components/ui/table";
 import { NewChatDialog } from "./dialogs/NewChatDialog";
 
-const data: Chat[] = [
-  {
-    id: "m5gr84i1",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i2",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i3",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i4",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i5",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i6",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i7",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i8",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-  {
-    id: "m5gr84i9",
-    name: "teste123",
-    key: "3161321123231121212211221212112122112123",
-    createdAt: "15/10/2004",
-    updatedAt: "15/10/2004",
-  },
-];
-
 export type Chat = {
   id: string;
-  name: string;
-  key: string;
   createdAt: string;
-  updatedAt: string;
 };
 
 export const columns: ColumnDef<Chat>[] = [
@@ -135,14 +66,9 @@ export const columns: ColumnDef<Chat>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "key",
-    header: "Key",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("key")}</div>,
-  },
-  {
-    accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+    accessorKey: "id",
+    header: "Id",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
   },
   {
     accessorKey: "createdAt",
@@ -162,23 +88,6 @@ export const columns: ColumnDef<Chat>[] = [
     ),
   },
   {
-    accessorKey: "updatedAt",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Updated At
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="font-medium ml-4">{row.getValue("updatedAt")}</div>
-      );
-    },
-  },
-  {
     id: "actions",
     header: () => <div>Actions</div>,
     enableHiding: false,
@@ -196,7 +105,7 @@ export const columns: ColumnDef<Chat>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(Chat.key)}
+              onClick={() => navigator.clipboard.writeText(Chat.id)}
             >
               Copy Chat Key
             </DropdownMenuItem>
@@ -211,7 +120,11 @@ export const columns: ColumnDef<Chat>[] = [
   },
 ];
 
-export function DataTableDemo() {
+interface Props {
+  data: Chat[];
+}
+
+export function DataTableDemo({ data }: Props) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []

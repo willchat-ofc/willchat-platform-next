@@ -5,7 +5,12 @@ export const fetchWithAuth = async (
   input: string | URL | Request,
   init?: RequestInit
 ) => {
-  const response = await fetch(input, init);
+  const response = await fetch(input, {
+    ...init,
+    headers: {
+      Authorization: cookies().get("accessToken")?.value || "",
+    },
+  });
 
   if (response.status != 401) return response;
 
@@ -30,4 +35,11 @@ export const fetchWithAuth = async (
     "accessToken",
     (await refreshTokenRequestResponse.json()).accessToken
   );
+
+  return await fetch(input, {
+    ...init,
+    headers: {
+      Authorization: cookies().get("accessToken")?.value || "",
+    },
+  });
 };
