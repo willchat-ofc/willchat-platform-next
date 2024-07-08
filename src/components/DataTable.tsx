@@ -122,9 +122,10 @@ export const columns: ColumnDef<Chat>[] = [
 
 interface Props {
   data: Chat[];
+  reloadChats: () => Promise<void>;
 }
 
-export function DataTableDemo({ data }: Props) {
+export function DataTableDemo({ data, reloadChats }: Props) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -183,7 +184,7 @@ export function DataTableDemo({ data }: Props) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <NewChatDialog />
+        <NewChatDialog reloadChats={reloadChats} />
       </div>
       <div className="rounded-md border min-h-[700px]">
         <Table>
