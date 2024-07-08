@@ -15,19 +15,21 @@ import { useState } from "react";
 
 export function NewChatDialog() {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { setChats } = useGlobalChatsContext();
 
   const handle = async () => {
+    setIsLoading(true);
     await fetch("/api/create-chat", {
       method: "POST",
     });
-
+    setOpen(false);
     const response = await fetch("/api/get-all-chats", {
       method: "GET",
     });
 
     setChats(await response.json());
-    setOpen(false);
+    setIsLoading(false);
   };
 
   return (
@@ -53,7 +55,11 @@ export function NewChatDialog() {
           </div> */}
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={async () => await handle()}>
+          <Button
+            disabled={isLoading}
+            type="submit"
+            onClick={async () => await handle()}
+          >
             Create
           </Button>
         </DialogFooter>
