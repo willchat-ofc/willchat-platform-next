@@ -128,12 +128,12 @@ const DropDownMenuComponent = ({ chat }: DropDownMenuProps) => {
         <DropdownMenuItem
           onClick={() => navigator.clipboard.writeText(chat.id)}
         >
-          Copy Chat Key
+          Copy Chat Id
         </DropdownMenuItem>
         <DropdownMenuItem>See Metrics</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Edit chat</DropdownMenuItem>
-        <DropdownMenuItem onClick={handleDelete}>Delete chat</DropdownMenuItem>
+        <DropdownMenuItem>Edit Chat</DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDelete}>Delete Chat</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
