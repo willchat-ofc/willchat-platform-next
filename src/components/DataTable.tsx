@@ -36,12 +36,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { NewChatDialog } from "./dialogs/NewChatDialog";
-import { useAppContext } from "@/app/context";
-
-export type Chat = {
-  id: string;
-  createdAt: string;
-};
+import { Chat } from "@/models/chat";
+import { useGlobalChatsContext } from "@/context/globalChatContext";
 
 export const columns: ColumnDef<Chat>[] = [
   {
@@ -105,7 +101,15 @@ interface DropDownMenuProps {
 }
 
 const DropDownMenuComponent = ({ chat }: DropDownMenuProps) => {
-  const { test } = useAppContext();
+  const { setChats } = useGlobalChatsContext();
+
+  const handleDelete = async () => {
+    await fetch(`/api/delete-chat?id=${chat.id}`, {
+      method: "DELETE",
+    });
+
+    setChats((prevChats) => prevChats.filter((c) => c.id !== chat.id));
+  };
 
   return (
     <DropdownMenu>
@@ -125,13 +129,7 @@ const DropDownMenuComponent = ({ chat }: DropDownMenuProps) => {
         <DropdownMenuItem>See Metrics</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Edit chat</DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => {
-            console.log(test);
-          }}
-        >
-          Delete chat
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDelete}>Delete chat</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -1,32 +1,32 @@
 "use client";
 
-import { Chat, DataTableDemo } from "@/components/DataTable";
+import { DataTableDemo } from "@/components/DataTable";
 import { Header } from "@/components/Header";
 import { SideBar } from "@/components/SideBar";
-import { useEffect, useState } from "react";
-import { useAppContext } from "./context";
+import { useGlobalChatsContext } from "@/context/globalChatContext";
+import { useEffect } from "react";
 
 export default function Home() {
-  const [data, setData] = useState<Chat[]>([]);
+  const { chats, setChats } = useGlobalChatsContext();
 
   const fetchData = async () => {
     const response = await fetch("/api/get-all-chats", {
       method: "GET",
     });
 
-    setData(await response.json());
+    setChats(await response.json());
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [chats]);
 
   return (
     <main className="flex flex-col h-screen">
       <Header />
       <section className="w-full h-full flex">
         <SideBar />
-        <DataTableDemo data={data} reloadChats={fetchData} />
+        <DataTableDemo data={chats} reloadChats={fetchData} />
       </section>
     </main>
   );
