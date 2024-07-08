@@ -23,8 +23,8 @@ export const Header = () => {
         </div>
       </div>
       <div className="flex mx-10 gap-6 hover:[&_button]:text-blue-600">
-        <button onClick={() => router.push("/sign-in")}>Sign In</button>
-        <button onClick={() => router.push("/sign-up")}>Try Free</button>
+        <button onClick={() => router.push("/auth/sign-in")}>Sign In</button>
+        <button onClick={() => router.push("/auth/sign-up")}>Try Free</button>
       </div>
     </nav>
   );
