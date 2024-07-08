@@ -9,24 +9,24 @@ import { useEffect } from "react";
 export default function Home() {
   const { chats, setChats } = useGlobalChatsContext();
 
-  const fetchData = async () => {
-    const response = await fetch("/api/get-all-chats", {
-      method: "GET",
-    });
-
-    setChats(await response.json());
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/get-all-chats", {
+        method: "GET",
+      });
+
+      setChats(await response.json());
+    };
+
     fetchData();
-  }, []);
+  }, [setChats]);
 
   return (
     <main className="flex flex-col h-screen">
       <Header />
       <section className="w-full h-full flex">
         <SideBar />
-        <DataTableDemo data={chats} reloadChats={fetchData} />
+        <DataTableDemo data={chats} />
       </section>
     </main>
   );

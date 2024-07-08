@@ -108,7 +108,11 @@ const DropDownMenuComponent = ({ chat }: DropDownMenuProps) => {
       method: "DELETE",
     });
 
-    setChats((prevChats) => prevChats.filter((c) => c.id !== chat.id));
+    const response = await fetch("/api/get-all-chats", {
+      method: "GET",
+    });
+
+    setChats(await response.json());
   };
 
   return (
@@ -137,10 +141,9 @@ const DropDownMenuComponent = ({ chat }: DropDownMenuProps) => {
 
 interface Props {
   data: Chat[];
-  reloadChats: () => Promise<void>;
 }
 
-export function DataTableDemo({ data, reloadChats }: Props) {
+export function DataTableDemo({ data }: Props) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -199,7 +202,7 @@ export function DataTableDemo({ data, reloadChats }: Props) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <NewChatDialog reloadChats={reloadChats} />
+        <NewChatDialog />
       </div>
       <div className="rounded-md border min-h-[700px]">
         <Table>

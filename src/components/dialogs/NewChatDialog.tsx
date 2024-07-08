@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,22 +10,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useGlobalChatsContext } from "@/context/globalChatContext";
 import { useState } from "react";
 
-interface Props {
-  reloadChats: () => Promise<void>;
-}
-
-export function NewChatDialog({ reloadChats }: Props) {
+export function NewChatDialog() {
   const [open, setOpen] = useState(false);
+  const { setChats } = useGlobalChatsContext();
 
   const handle = async () => {
     await fetch("/api/create-chat", {
       method: "POST",
     });
-    reloadChats();
+
+    const response = await fetch("/api/get-all-chats", {
+      method: "GET",
+    });
+
+    setChats(await response.json());
     setOpen(false);
   };
 
